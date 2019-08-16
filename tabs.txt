@@ -1,0 +1,94 @@
+
+
+-----html-----
+
+
+
+<div class="tabs">
+        <ul>
+            <li class="tab active" data="1">One</li>
+            <li class="tab" data="2">Two</li>
+            <li class="tab" data="3">Three</li>
+        </ul>
+        <div class="tab-body" data="1">
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+        </div>
+        <div class="tab-body" data="2">
+            <p>It has survived not only five centuries, but also the leap
+                into electronic typesetting, remaining essentially unchanged. </p>
+        </div>
+        <div class="tab-body" data="3">
+            <p>Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
+                software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        </div>
+    </div>
+
+
+
+-----js-----
+
+
+
+function hideTab(){
+    let  tabBody = document.querySelectorAll('.tab-body');
+    for (i = 1; i< tabBody.length; i++){
+        tabBody[i].style.display = 'none';
+    }
+}
+
+hideTab();
+
+let tab = document.querySelectorAll('.tab'); // active class and show the sections
+tab.forEach(function(element){
+    element.onclick = showTabs;
+});
+
+function showTabs(){
+    let data = this.getAttribute('data');
+    let  tabBody = document.querySelectorAll('.tab-body');
+
+        for (i = 0; i< tabBody.length; i++){
+            tabBody[i].style.display = 'none';
+        }
+
+        if (this.classList) {
+            for (let j = 0; j < tab.length; j++) {
+                tab[j].classList.remove('active');
+            }
+            this.classList.add('active');
+        } else {
+            this.active += ' ' + active;
+        }
+
+    document.querySelector(`.tab-body[data="${data}"]`).style.display = 'block';
+} 
+
+
+
+-----css-----
+
+
+
+.tabs {
+    border: 1px solid #666;
+    padding: 10px;
+    margin: 50px;
+    background: rgb(32, 178, 170);
+    color: white;
+}
+
+.active {
+    font-weight: bold;
+    background: rgba(0, 139,139,.3);
+}
+
+ul {
+    padding-left: 0;
+}
+
+.tab {
+    cursor: pointer;
+    display: inline-block;
+    border: 2px solid white;
+    padding: 5px 10px;
+}
